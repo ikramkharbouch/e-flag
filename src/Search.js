@@ -2,13 +2,27 @@ import { useState } from "react";
 
 const Search = () => {
   const [country, setCountry] = useState("");
+  const [countryVal, setCountryVal] = useState("");
   // eslint-disable-next-line
   const [isReal, setIsReal] = useState(false);
   // eslint-disable-next-line
-  const [imgSrc, setImgSrc] = useState("https://restcountries.eu/data/mar.svg");
+  const [imgSrc, setImgSrc] = useState("");
+  const [nonExistent, setNonExistent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setImgSrc(data[0].flag);
+        setIsReal(true);
+        setCountryVal(country);
+      })
+      .catch((err) => {
+        setNonExistent(true);
+        console.log(err.message);
+      });
+
     console.log(country);
     setCountry("");
   };
@@ -34,12 +48,30 @@ const Search = () => {
       </div>
       <div className="mx-auto flex flex-col justify-center text-center mt-10">
         <div className="mx-auto">
-          {imgSrc && <img src={imgSrc} alt="" width="300" height="300" />}
+          {imgSrc && (
+            <img
+              src={imgSrc}
+              alt=""
+              width="300"
+              height="300"
+              className="border-2 border-black rounded"
+            />
+          )}
         </div>
         <div>
-          {imgSrc && <h3 className="font-light">{country}</h3>}
-          {isReal && imgSrc && <p className="text-blue-300 font-bold">Real</p>}
-          {!isReal && imgSrc && <p className="text-blue-300 font-bold">Fake</p>}
+          {!nonExistent && !imgSrc && country && (
+            <h3 className="font-light">Loading...</h3>
+          )}
+          {imgSrc && <h3 className="font-light mt-4">{countryVal}</h3>}
+          {isReal && imgSrc && (
+            <p className="text-blue-300 font-bold mt-2">Real Country</p>
+          )}
+          {!isReal && imgSrc && (
+            <p className="text-blue-300 font-bold mt-2">Fake Country</p>
+          )}
+          {nonExistent && !imgSrc && (
+            <h3 className="font-light">Country Does Not Exist</h3>
+          )}
         </div>
       </div>
     </div>
