@@ -3,9 +3,7 @@ import { useState } from "react";
 const Search = () => {
   const [country, setCountry] = useState("");
   const [countryVal, setCountryVal] = useState("");
-  // eslint-disable-next-line
   const [isReal, setIsReal] = useState(false);
-  // eslint-disable-next-line
   const [imgSrc, setImgSrc] = useState("");
   const [nonExistent, setNonExistent] = useState(false);
 

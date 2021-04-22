@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AddFlag from "./AddFlag";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Search from "./Search";
@@ -13,8 +14,11 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/search">
+            <Route path="/search">
               <Search />
+            </Route>
+            <Route path="/add">
+              <AddFlag />
             </Route>
           </Switch>
         </div>
