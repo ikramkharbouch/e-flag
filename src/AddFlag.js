@@ -1,8 +1,19 @@
+import { useState } from "react";
 import Button from "./components/Button";
 import DropZone from "./components/DropZone";
+import { useLocation } from "react-router-dom";
 
 const AddFlag = () => {
-  const handleSubmit = () => {};
+  const [country, setCountry] = useState("");
+  // const [files, setFiles] = useState([]);
+  const location = useLocation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(country);
+    console.log(location.state.files);
+  };
+
   return (
     <div className="mx-auto text-center mt-4">
       <h1 className="text-4xl font-bold">Add new flag</h1>
@@ -15,6 +26,7 @@ const AddFlag = () => {
           type="text"
           className="border border-blue-300 rounded px-2 py-4"
           placeholder="Enter your country's name"
+          onChange={(e) => setCountry(e.target.value)}
         />
         <label className="text-left font-bold mt-4">Country's flag</label>
         <DropZone />

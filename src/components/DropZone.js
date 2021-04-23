@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const DropZone = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   // eslint-disable-next-line
   const [errorMessage, setErrorMessage] = useState("");
 
-  //   const history = useHistory();
+  const history = useHistory();
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -23,6 +24,15 @@ const DropZone = () => {
       handleFiles(files);
     }
   };
+
+  useEffect(() => {
+    history.push({
+      pathname: "/add",
+      state: {
+        files: selectedFiles,
+      },
+    });
+  });
 
   const validateFile = (file) => {
     const validTypes = [
