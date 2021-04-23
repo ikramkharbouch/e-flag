@@ -32,7 +32,7 @@ const DropZone = () => {
         files: selectedFiles,
       },
     });
-  });
+  }, [history, selectedFiles]);
 
   const validateFile = (file) => {
     const validTypes = [

@@ -27,6 +27,7 @@ const AddFlag = () => {
           className="border border-blue-300 rounded px-2 py-4"
           placeholder="Enter your country's name"
           onChange={(e) => setCountry(e.target.value)}
+          required
         />
         <label className="text-left font-bold mt-4">Country's flag</label>
         <DropZone />
