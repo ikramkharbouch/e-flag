@@ -1,22 +1,34 @@
 import { useState } from "react";
 import Button from "./components/Button";
-import DropZone from "./components/DropZone";
-import { useLocation } from "react-router-dom";
 
 const AddFlag = () => {
   const [country, setCountry] = useState("");
   // const [files, setFiles] = useState([]);
-  const location = useLocation();
+
+  const min = 1;
+  const max = 5;
+  const randomNb = Math.floor(min + Math.random(0, 5) * (max - min));
+  const path = `../FakeFlags/fakeflag-${randomNb}.png`;
+  const newCountry = { country: country, path: path };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(country);
-    console.log(location.state.files);
+    fetch("http://localhost:8000/flags", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newCountry),
+    })
+      .then(() => console.log("Inserted Successfully"))
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="mx-auto text-center mt-4">
       <h1 className="text-4xl font-bold">Add new flag</h1>
+      <p className="text-base font-light mt-2">
+        (A flag will be generated accordingly)
+      </p>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col w-8/12	mx-auto mt-10"
@@ -29,8 +41,6 @@ const AddFlag = () => {
           onChange={(e) => setCountry(e.target.value)}
           required
         />
-        <label className="text-left font-bold mt-4">Country's flag</label>
-        <DropZone />
         <Button content="Submit" />
       </form>
     </div>
