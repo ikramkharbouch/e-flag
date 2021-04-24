@@ -2,6 +2,10 @@
 
 This project is made to let you search into a variety of countries and display their flags, you can add your fake country as well and it will be assigned a flag by default.
 
+## Preview of my little app
+
+![alt text](https://i.imgur.com/o5WOiCq.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -47,7 +51,3 @@ This project uses a JSON server to save the countries created by users.
 ### Then watch the server using
 
 ```json-server --watch db.json```
-
-## Preview of my little app
-
-![alt text](https://i.imgur.com/o5WOiCq.png)
