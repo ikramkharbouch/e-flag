@@ -50,4 +50,4 @@ This project uses a JSON server to save the countries created by users.
 
 ## Preview of my little app
 
-![alt text](https://i.imgur.com/eiBSd0u.png)
+![alt text](https://i.imgur.com/o5WOiCq.png)
