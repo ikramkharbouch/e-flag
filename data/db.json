@@ -1,0 +1,6 @@
+{
+    "flags": [
+    { "id": 1, "country": "Malena", "path": "typicode" },
+    { "id": 2, "country": "Some Country", "path": "typicode" }
+  ]
+}
