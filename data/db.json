@@ -6,30 +6,11 @@
       "path": "../FakeFlags/fakeflag-1"
     },
     {
+      "country": "TreeTown",
+      "path": [
+        "https://i.imgur.com/gJtexmx.png"
+      ],
       "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "country": "Malenaya",
-      "path": "../FakeFlags/72.45051540007047",
-      "id": 4
-    },
-    {
-      "country": "Malenaya",
-      "path": "../FakeFlags/4",
-      "id": 5
-    },
-    {
-      "country": "Malenaya",
-      "path": "../FakeFlags/fakeflag-1",
-      "id": 6
-    },
-    {
-      "country": "Malenaya",
-      "path": "../FakeFlags/fakeflag-2.png",
-      "id": 7
     }
   ]
 }

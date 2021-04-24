@@ -7,6 +7,20 @@ const Search = () => {
   const [imgSrc, setImgSrc] = useState("");
   const [nonExistent, setNonExistent] = useState(false);
 
+  const searchJsonDb = () => {
+    fetch(`http://localhost:8000/flags?country=${country}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setImgSrc(data[0].path);
+        setIsReal(false);
+        setCountryVal(country);
+      })
+      .catch((err) => {
+        setNonExistent(true);
+        console.log(err.message);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`https://restcountries.eu/rest/v2/name/${country}`)
@@ -18,6 +32,7 @@ const Search = () => {
       })
       .catch((err) => {
         setNonExistent(true);
+        searchJsonDb();
         console.log(err.message);
       });
 
