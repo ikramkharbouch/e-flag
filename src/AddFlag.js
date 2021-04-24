@@ -62,7 +62,6 @@ const AddFlag = () => {
     e.preventDefault();
 
     checkCountryName();
-    console.log(countryExists);
     if (!countryExists) {
       fetch("http://localhost:8000/flags", {
         method: "POST",

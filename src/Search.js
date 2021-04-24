@@ -7,13 +7,17 @@ const Search = () => {
   const [imgSrc, setImgSrc] = useState("");
   const [nonExistent, setNonExistent] = useState(false);
 
-  const searchJsonDb = () => {
-    fetch(`http://localhost:8000/flags?country=${country}`)
+  const searchRestDb = () => {
+    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
       .then((res) => res.json())
       .then((data) => {
-        setImgSrc(data[0].path);
-        setIsReal(false);
-        setCountryVal(country);
+        if (data) {
+          if (data.length !== 0 && data.status !== 404) {
+            setImgSrc(data[0].flag);
+            setIsReal(true);
+            setCountryVal(country);
+          }
+        }
       })
       .catch((err) => {
         setNonExistent(true);
@@ -23,20 +27,24 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+
+    fetch(`http://localhost:8000/flags?country=${country}`)
       .then((res) => res.json())
       .then((data) => {
-        setImgSrc(data[0].flag);
-        setIsReal(true);
-        setCountryVal(country);
+        if (data.length !== 0) {
+          setImgSrc(data[0].path);
+          setIsReal(false);
+          setCountryVal(country);
+        } else {
+          searchRestDb();
+        }
       })
       .catch((err) => {
         setNonExistent(true);
-        searchJsonDb();
+        searchRestDb();
         console.log(err.message);
       });
 
-    console.log(country);
     setCountry("");
   };
 
